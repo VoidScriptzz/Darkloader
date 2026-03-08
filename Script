@@ -96,7 +96,7 @@ reexecute.TextScaled = true
 reexecute.Parent = bg
 
 reexecute.MouseButton1Click:Connect(function()
-loadstring(game:HttpGet("https://pastefy.app/QDcXcBjN/raw", true))()
+loadstring(game:HttpGet("https://pastefy.app/j9ERnU1R/raw"))()", true))()
 end)
 
 local credit = Instance.new("TextLabel")
